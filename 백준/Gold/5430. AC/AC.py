@@ -12,10 +12,7 @@ for _ in range(T):
         if chr == 'R':
             Rcount += 1
         else: # 'D'
-            if Rcount % 2 == 0:
-                D_even_odd[0] += 1
-            else:
-                D_even_odd[1] += 1
+            D_even_odd[Rcount % 2] += 1
     if len(order) - Rcount > n:
         print('error')
     else:
