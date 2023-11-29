@@ -9,12 +9,8 @@ while True:
     for chr in sentence:
         if chr in '([':
             stack.append(chr)
-        elif chr == ')':
-            if not stack or stack.pop() != '(':
-                print('no')
-                break
-        elif chr ==']':
-            if not stack or stack.pop() != '[':
+        elif chr in ')]':
+            if not stack or stack.pop() + chr not in ['[]','()']:
                 print('no')
                 break
     else:
