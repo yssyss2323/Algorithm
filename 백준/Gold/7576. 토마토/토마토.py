@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = lambda: sys.stdin.readline().rstrip()
 M,N = map(int,input().split())
 # 맵 초기화
 field = []
