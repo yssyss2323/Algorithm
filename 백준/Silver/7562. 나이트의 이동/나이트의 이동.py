@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = lambda: sys.stdin.readline().rstrip()
 for _ in range(int(input())):
     l = int(input())
     chessmap = [[-1] * l for _ in range(l)]
