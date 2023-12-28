@@ -4,12 +4,12 @@ input = lambda: sys.stdin.readline().rstrip()
 
 n = int(input())
 field = []
-heights = set()
+height = set()
 for _ in range(n):
     tmp = list(map(int, input().split()))
     field.append(tmp)
-    heights = heights.union(set(tmp))
-height = sorted(heights)
+    height = height.union(set(tmp))
+#height = sorted(heights)
 
 dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
