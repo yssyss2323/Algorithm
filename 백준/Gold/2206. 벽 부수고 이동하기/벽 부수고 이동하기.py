@@ -25,12 +25,13 @@ while q:
     for i in range(4):
         nx, ny, nt = x + dx[i], y + dy[i], t + 1
         if 0 <= nx < n and 0 <= ny < m:
-            if not visited[nx][ny]:
-                # 방문하지 않은 곳 -> 벽인데 더이상 부실수 없는 경우가 아니면 방문가치 있음
-                if not (field[nx][ny] == '1' and breaked):
+            if not visited[nx][ny]: # 방문하지 않은 곳
+                if field[nx][ny] == '0': # 벽이 아니라면 방문가치 있음
                     visited[nx][ny] = 1 if breaked else 2
-                    nowbreaked = True if (breaked or field[nx][ny] == '1') else False
-                    q.append([nx, ny, nowbreaked, nt])
+                    q.append([nx, ny, breaked, nt])
+                elif not breaked: # 벽이라면 부술수 있어야 방문가치가 있음
+                    visited[nx][ny] = 2
+                    q.append([nx, ny, True, nt])
             elif visited[nx][ny] == 1:
                 # 한번 부순 이후에 방문한곳 -> 벽이 아니고 아직 안부신 경우에만 방문가치 있음
                 if field[nx][ny] == '0' and not breaked:
