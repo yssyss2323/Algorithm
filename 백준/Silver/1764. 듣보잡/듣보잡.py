@@ -1,3 +1,6 @@
+import sys
+input = lambda: sys.stdin.readline().rstrip()
+
 N, M = map(int, input().split())
 not_heard = set()
 not_seen = set()
