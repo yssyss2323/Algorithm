@@ -1,16 +1,14 @@
-n,m = map(int,input().split())
-not_heard, not_seen = [], set()
-for _ in range(n):
-    not_heard.append(input())
-not_heard.sort()
-for _ in range(m):
+N, M = map(int, input().split())
+not_heard = set()
+not_seen = set()
+
+for _ in range(N):
+    not_heard.add(input())
+
+for _ in range(M):
     not_seen.add(input())
 
-answer = []
-for i in not_heard:
-    if i in not_seen:
-        answer.append(i)
-
-print(len(answer))
-for i in answer:
-    print(i)
+result = sorted(list(not_heard & not_seen))
+print(len(result))
+for name in result:
+    print(name)
