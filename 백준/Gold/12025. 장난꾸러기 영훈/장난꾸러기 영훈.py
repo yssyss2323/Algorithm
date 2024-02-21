@@ -15,7 +15,7 @@ else:
     kk = (num - len(kk)) * '0' + kk
     for i in range(num):
         if kk[i] == '0' and secret[numlist[i]] in [6, 7]:
-            secret[numlist[i]] %= 5
+            secret[numlist[i]] -= 5
         if kk[i] == '1' and secret[numlist[i]] in [1, 2]:
             secret[numlist[i]] += 5
     print(*secret, sep='')
