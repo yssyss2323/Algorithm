@@ -1,0 +1,1 @@
+for i in bin(int(input())+1)[3:]:print(4 if i=='0'else 7,end='')
