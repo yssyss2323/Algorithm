@@ -1,5 +1,5 @@
 n = int(input())
-numlist = list(map(int, input().split())) + []
+numlist = list(map(int, input().split()))
 if n == 1 or (n == 2 and numlist[0] != numlist[1]):
     print('A')
 elif n == 2 and numlist[0] == numlist[1]:
