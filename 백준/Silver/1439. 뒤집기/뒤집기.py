@@ -1,0 +1,6 @@
+s = input()
+list1 = list(s.split('0'))
+one = len(list1) - list1.count('')
+list2 = s.split('1')
+zero = len(list2) - list2.count('')
+print(min(one, zero))
