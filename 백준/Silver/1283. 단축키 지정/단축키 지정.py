@@ -1,24 +1,19 @@
 n = int(input())
-options = []
-for _ in range(n):
-    options.append(list(input().split()))
 shortcut = []
-for option in options:
+for _ in range(n):
+    option = input().split()
     for i in range(len(option)):
-        key = ord(option[i][0]) % 32
-        if key not in shortcut:
-            shortcut.append(key)
+        if option[i][0].lower() not in shortcut:
+            shortcut.append(option[i][0].lower())
             option[i] = '[' + option[i][0] + ']' + option[i][1:]
             break
     else:
         for i in range(len(option)):
-            for j in range(1, len(option[i])):
-                key = ord(option[i][j]) % 32
-                if key not in shortcut:
-                    shortcut.append(key)
+            for j in range(len(option[i])):
+                if option[i][j].lower() not in shortcut:
+                    shortcut.append(option[i][j].lower())
                     option[i] = option[i][:j] + '[' + option[i][j] + ']' + option[i][j + 1:]
                     break
             if '[' in option[i]:
                 break
-for answer in options:
-    print(*answer)
+    print(*option)
