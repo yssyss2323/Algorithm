@@ -1,17 +1,17 @@
 n = int(input())
 
 # 루트n 이하 소인수 탐색
-yes_prime = set()
+yes_prime = []
 m = n
-i = 2
-while i ** 2 <= m:
+for i in range(2, int(m ** 0.5) + 1):
     if m % i:
-        i += 1
+        continue
     else:
-        m //= i
-        yes_prime.add(i)
+        yes_prime.append(i)
+        while m % i == 0:
+            m //= i
 if m > 1:
-    yes_prime.add(m)
+    yes_prime.append(m)
 
 # n이하 서로소 개수
 for i in yes_prime:
