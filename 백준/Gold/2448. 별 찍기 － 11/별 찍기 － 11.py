@@ -1,7 +1,7 @@
-top = ' ' * 2 + '*' + ' ' * 2
-mid = ' ' + '*' + ' ' + '*' + ' '
-bot = '*' * 5
-triangle = [top, mid, bot]
+import sys
+print = sys.stdout.write
+
+triangle = ['  *  ', ' * * ', '*****']
 
 start = 3
 goal = int(input())
@@ -15,3 +15,4 @@ while goal > start:
     triangle = first + second
 for i in triangle:
     print(i)
+    print('\n')
