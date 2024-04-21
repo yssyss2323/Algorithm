@@ -11,13 +11,11 @@ for i in range(2, end + 1):
 
 total = max_num - min_num + 1
 check = [True] * total
+answer = total
 for i in square_num:
     x = (min_num // i + 1) * i - min_num  if min_num % i else 0
     for j in range(x, total, i):
-        check[j] = False
-
-answer = 0
-for i in check:
-    if i:
-        answer += 1
+        if check[j]:
+            check[j] = False
+            answer -= 1
 print(answer)
