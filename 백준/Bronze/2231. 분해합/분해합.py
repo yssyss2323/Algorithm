@@ -1,5 +1,5 @@
 n = int(input())
-for i in range(n // 2, n + 1):
+for i in range(max(n - len(str(n)) * 9, 1), n + 1):
     tmp = i
     for j in str(i):
         tmp += int(j)
