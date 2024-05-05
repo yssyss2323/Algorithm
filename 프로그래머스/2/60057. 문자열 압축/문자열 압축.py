@@ -1,29 +1,44 @@
+# 문자열을 n개씩 토큰화시키는 함수
+def token_of_string(given_string, n):
+    num_of_token = (len(given_string) - 1) // n + 1
+    tokens = []
+    for _ in range(num_of_token):
+        tokens.append(given_string[:n])
+        given_string = given_string[n:]
+    tokens.append('0')
+    return tokens
+
+# 문자열을 n개 단위로 압축시키는 함수
+def compression_of_string(given_string, n):
+    tokens = token_of_string(given_string, n)
+    compressed_string = ""
+    now, check = 0, 0 # check는 반복문 탈출을 위한 변수입니다
+    while True:
+        cnt = 1 # 연속하는 동일한 토큰의 개수를 카운트하는 변수입니다
+        for i in range(now + 1, len(tokens)):
+            check = i
+            if tokens[now] == tokens[i]:
+                cnt += 1
+            else:
+                break
+        # 압축 문자열을 만드는 과정입니다
+        if cnt > 1:
+            compressed_string += f"{cnt}{tokens[now]}"
+        else:
+            compressed_string += f"{tokens[now]}"
+
+        if check == len(tokens) - 1:
+            break
+        now = check
+    return compressed_string
+
+# 정답 구하는 함수
 def solution(s):
-    answer = len(s)
-
-    for i in range(1,int(len(s)/2)+1): #range함수 특성상 종료값이 포함되지 않기때문에 포함시키기 위해 +1해줌
-        pos = 0 #어느 위치에서 처리중인지 표현하는 포지션 변수
-        length  = len(s) #처음엔 문자열 길이로 초기화. 후에 압축된 길이로 바꿔줄거임.
-
-        while pos + i <= len(s):
-            unit = s[pos:pos+i]
-            pos += i #진행된 만큼 포지션에 반영
-
-            cnt = 1
-            while pos + i <= len(s):
-                test = s[pos:pos+i]
-                if unit == s[pos:pos+i]:
-                    cnt += 1
-                    pos += i
-                else:
-                    break
-
-            if cnt > 1: #압축이 됐다면
-                length -= i*(cnt - 1)
-                length += len(str(cnt))
-
-
-
-        answer = min(answer, length)
-
+    if len(s) == 1:
+        answer = 1
+    else:
+        answer = float("inf")
+        for token_length in range(1, len(s) // 2 + 1):
+            tmp_string = compression_of_string(s, token_length)
+            answer = min(answer, len(tmp_string))
     return answer
