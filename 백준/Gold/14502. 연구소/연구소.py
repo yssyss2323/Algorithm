@@ -26,8 +26,8 @@ def break_wall(lab, three_coordinates):
     return lab
 
 def dfs(lab, virus):
-    virtual_lab = [[lab[i][j] for j in range(len(lab[i]))] for i in range(len(lab))]
-    virtual_virus = [i for i in virus]
+    virtual_lab = [row[:] for row in lab]
+    virtual_virus = virus[:]
     while virtual_virus:
         x,y = virtual_virus.pop()
         dx = [1,-1,0,0]
