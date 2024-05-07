@@ -20,7 +20,7 @@ class RobotSimulation:
             self.visited[self.r][self.c] = True
 
     def check_clean_around(self):
-        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+        for dr, dc in self.move.values():
             nr, nc = self.r + dr, self.c + dc
             if self.place[nr][nc] == 0 and not self.visited[nr][nc]:
                 return False
