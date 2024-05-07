@@ -1,9 +1,7 @@
 NORTH, EAST, SOUTH, WEST = 0, 1, 2, 3
 
 class RobotSimulation:
-    def __init__(self, N, M, r, c, direction, place):
-        self.N = N
-        self.M = M
+    def __init__(self, r, c, direction, place):
         self.r = r
         self.c = c
         self.num_cleaned = 0
@@ -60,5 +58,6 @@ if __name__ == "__main__":
     my_place = []
     for _ in range(N):
         my_place.append(list(map(int,input().split())))
-    my_robot = RobotSimulation(N,M,r,c,d,my_place)
-    print(my_robot.simulation())
+    my_robot = RobotSimulation(r, c, d, my_place)
+    my_robot.simulation()
+    print(my_robot.num_cleaned)
