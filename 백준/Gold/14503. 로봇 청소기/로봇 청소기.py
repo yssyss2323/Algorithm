@@ -49,7 +49,6 @@ class RobotSimulation:
                 is_end = self.move_case1()
             else:
                 self.move_case2()
-        return self.num_cleaned
 
 
 if __name__ == "__main__":
