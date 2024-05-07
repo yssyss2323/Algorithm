@@ -13,15 +13,11 @@ class RobotSimulation:
         self.rotate = {NORTH:WEST, EAST:NORTH, SOUTH:EAST, WEST:SOUTH}
         self.place = place
         self.visited = [row[:] for row in place]
-        '''for i in range(N):
-            for j in range(M):
-                if place[i][j] == 0:
-                    self.visited[i][j] = False'''
 
     def clean(self):
         if not self.visited[self.r][self.c]:
             self.num_cleaned += 1
-            self.visited[self.r][self.c] = self.num_cleaned
+            self.visited[self.r][self.c] = True
 
     def check_clean_around(self):
         for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
