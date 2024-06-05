@@ -1,11 +1,12 @@
 N = int(input())
 prime = [False] * 2 + [True] * (N - 1)
+prime_cnt = 0
 for i in range(2, N + 1):
     if prime[i]:
         for j in range(i * 2, N + 1, i):
             prime[j] = False
+        prime_cnt += 1
 
-prime_cnt = prime.count(True)
 if N == 1:
     print(1, 0)
 elif N == 2:
