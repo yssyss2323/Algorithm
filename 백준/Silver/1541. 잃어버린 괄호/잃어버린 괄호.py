@@ -1,9 +1,6 @@
 exprs = input().split('-')
-answer = 0
-for i in range(len(exprs)):
+answer = sum(list(map(int, exprs[0].split('+'))))
+for i in range(1, len(exprs)):
     exprs[i] = sum(list(map(int, exprs[i].split('+'))))
-    if i == 0:
-        answer += exprs[i]
-    else:
-        answer -= exprs[i]
+    answer -= exprs[i]
 print(answer)
