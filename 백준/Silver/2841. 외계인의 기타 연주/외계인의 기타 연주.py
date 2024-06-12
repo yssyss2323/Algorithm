@@ -13,18 +13,17 @@ for _ in range(N):
         cnt += 1
     else:
         while melody[line]:
-            last_pret = melody[line][-1]
-            if last_pret > pret:
+            if melody[line][-1] > pret:
                 melody[line].pop()
                 cnt += 1
-            elif last_pret < pret:
-                melody[line].append(pret)
-                cnt += 1
-                break
             else:
                 break
-        else:
+        if not melody[line]:
             melody[line].append(pret)
             cnt += 1
+        else:
+            if melody[line][-1] < pret:
+                melody[line].append(pret)
+                cnt += 1
 
 print(cnt)
