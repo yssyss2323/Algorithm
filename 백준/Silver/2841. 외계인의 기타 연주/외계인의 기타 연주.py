@@ -3,12 +3,11 @@ input = sys.stdin.readline
 
 
 N, P = map(int, input().split())
-melody = dict()
+melody = [None] + [[] for  _ in range(6)]
 cnt = 0
 for _ in range(N):
     line, pret = map(int, input().split())
 
-    melody[line] = melody.get(line, [])
     if not melody[line]:
         melody[line].append(pret)
         cnt += 1
