@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 n, k = map(int, input().split())
 caffein = [x for x in list(map(int, input().split())) if x <= k]
 
