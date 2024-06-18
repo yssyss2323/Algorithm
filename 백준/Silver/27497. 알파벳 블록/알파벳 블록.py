@@ -5,27 +5,20 @@ input = sys.stdin.readline
 
 string = deque()
 n = int(input())
-buttonlist = []
-left, right = deque(), deque()
+tmp = []
 for _ in range(n):
-    buttonlist.append(input().split())
-
-cnt = 0
-for button in buttonlist[::-1]:
+    button = input().split()
     if button[0] == '1':
-        if cnt == 0:
-            right.appendleft(button[1])
-            continue
-        else:
-            cnt -= 1
+        string.append(button[1])
+        tmp.append(True)
     elif button[0] == '2':
-        if cnt == 0:
-            left.append(button[1])
-            continue
-        else:
-            cnt -= 1
+        string.appendleft(button[1])
+        tmp.append(False)
     else:
-        cnt += 1
+        if tmp:
+            if tmp.pop():
+                string.pop()
+            else:
+                string.popleft()
 
-answer = left + right
-print(''.join(left + right) if answer else 0)
+print(''.join(string) if string else 0)
