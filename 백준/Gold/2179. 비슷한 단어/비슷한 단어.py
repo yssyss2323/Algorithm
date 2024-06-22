@@ -2,11 +2,9 @@ import sys
 input = lambda:sys.stdin.readline().rstrip()
 
 n = int(input())
-words = []
+words = [input() for _ in range(n)]
 check = dict()
-for _ in range(n):
-    word = input()
-    words.append(word)
+for word in words:
     tmp = ''
     for ch in word:
         tmp += ch
