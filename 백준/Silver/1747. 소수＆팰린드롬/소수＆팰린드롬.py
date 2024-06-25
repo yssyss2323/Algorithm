@@ -1,10 +1,6 @@
 def check_pelindrom(n):
     m = str(n)
-    for i in range(len(m) // 2):
-        if m[i] != m[len(m) - i - 1]:
-            return False
-    else:
-        return True
+    return m == m[::-1]
 
 
 MAXIMUM = 1003001  # 체로 100만 이상인 조건 충족하는 수를 찾았음
