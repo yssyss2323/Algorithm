@@ -22,23 +22,24 @@ def find_longest(matrix):
         ans = max(ans, find_long(col))
     return ans
 
-def change_map(matrix, point1, point2):  # 2차원 행렬의 인접한 두값 교환한 새로운 2차원행렬 반환 함수
-    new_matrix = [line[:] for line in matrix]  # 깊은복사를 위함
-    tmp = new_matrix[point2[0]][point2[1]]
-    new_matrix[point2[0]][point2[1]] = new_matrix[point1[0]][point1[1]]
-    new_matrix[point1[0]][point1[1]] = tmp
-    return new_matrix
-
 
 n = int(input())
 candy = [list(input()) for _ in range(n)]
 ans = 0
 for i in range(n):
     for j in range(n - 1):
-        new_candy = change_map(candy, [i, j], [i, j + 1])
-        ans = max(ans, find_longest(new_candy))
+        candy1 = candy[i][j]
+        candy2 = candy[i][j + 1]
+        if candy1 != candy2:
+            candy[i][j], candy[i][j + 1] = candy2, candy1
+            ans = max(ans, find_longest(candy))
+            candy[i][j], candy[i][j + 1] = candy1, candy2
 for i in range(n - 1):
     for j in range(n):
-        new_candy = change_map(candy, [i, j], [i + 1, j])
-        ans = max(ans, find_longest(new_candy))
+        candy1 = candy[i][j]
+        candy2 = candy[i + 1][j]
+        if candy1 != candy2:
+            candy[i][j], candy[i + 1][j] = candy2, candy1
+            ans = max(ans, find_longest(candy))
+            candy[i][j], candy[i + 1][j] = candy1, candy2
 print(ans)
