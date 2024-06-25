@@ -1,3 +1,6 @@
+import sys
+input = lambda:sys.stdin.readline().rstrip()
+
 def find_longest(matrix):
     # 한 라인에서 연속된 색깔 최대개수 구하는 함수
     def find_long(line):
