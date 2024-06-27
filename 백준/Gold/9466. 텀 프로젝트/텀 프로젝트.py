@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 def f(ch):
     return int(ch) - 1
 
