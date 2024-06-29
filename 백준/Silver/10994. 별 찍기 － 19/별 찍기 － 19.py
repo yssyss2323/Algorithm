@@ -1,17 +1,17 @@
-def printstar(n, x, i):
-    if i == 1 or i == 4 * x - 3:
-        print('*' * (4 * x - 3), end='')
-        if n == x: print()
-    elif i == 2 or i == 4 * x - 4:
-        print('*' + ' ' * (4 * x - 5) + '*', end='')
-        if n == x: print()
-    else:
-        print('* ', end='')
-        printstar(n, x - 1, i - 2)
-        print(' *', end='')
-        if n == x: print()
+def print_star(x):
+    if x == 1:
+        return ['*']
+
+    stars = []
+    stars.append('*' * (4 * x - 3))
+    stars.append('*' + ' ' * (4 * x - 5) + '*')
+    for star in print_star(x-1):
+        stars.append('* ' + star + ' *')
+    stars.append('*' + ' ' * (4 * x - 5) + '*')
+    stars.append('*' * (4 * x - 3))
+    return stars
 
 
 n = int(input())
-for i in range(1, 4 * n - 3 + 1):
-    printstar(n, n, i)
+for star in print_star(n):
+    print(star)
