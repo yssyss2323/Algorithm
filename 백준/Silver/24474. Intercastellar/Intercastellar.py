@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
 alist = []
 tmp_sum = 0
@@ -12,10 +15,18 @@ for _ in range(n):
 q = int(input())
 qlist = []
 for _ in range(q):
-    idx = 0
     now_q = int(input())
-    for i in range(idx, n):
-        if now_q <= alist[i][1]:
-            print(alist[i][0])
-            idx = i
+    l, r = 0, n - 1
+    while l <= r:
+        m = (l + r) // 2
+        if now_q > alist[m][1]:
+            l = m + 1
+        elif now_q < alist[m][1]:
+            r = m - 1
+        else:
             break
+    if alist[m][1] < now_q:
+        ans = alist[m+1][0]
+    else:
+        ans = alist[m][0]
+    print(ans)
