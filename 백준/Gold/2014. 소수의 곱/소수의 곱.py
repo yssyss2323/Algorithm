@@ -1,22 +1,15 @@
-from queue import PriorityQueue
-
+import heapq
 k, n = map(int, input().split())
 primes = list(map(int, input().split()))
-goat = max(primes)
-q = PriorityQueue()
-visited = set()
+pq = []
 for prime in primes:
-    q.put(prime)
-
-for _ in range(n - 1):
-    curr = q.get()
+    heapq.heappush(pq, prime)
+for _ in range(n):
+    curr = heapq.heappop(pq)
     for i in range(k):
         tmp = curr * primes[i]
-        #print(curr, tmp, q.qsize())
-        if q.qsize() < n or tmp < goat:
-            if tmp not in visited:
-                visited.add(tmp)
-                q.put(tmp)
-                if tmp > goat:
-                    goat = tmp
-print(q.get())
+        #print(curr, primes[i], tmp)
+        heapq.heappush(pq, tmp)
+        if curr % primes[i] == 0:
+            break
+print(curr)
