@@ -5,9 +5,8 @@ dy = [0, 0, 1, -1]
 
 def dfs1(table):
     w, h = len(table[0]), len(table)
-    visited = [[table[i][j] for j in range(w)] for i in range(h)]
     next_table = [[table[i][j] for j in range(w)] for i in range(h)]
-    visited[0][0] = True
+    table[0][0] = True
     stack = [(0, 0)]
     while stack:
         curr = stack.pop()
