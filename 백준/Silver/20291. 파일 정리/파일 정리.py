@@ -1,3 +1,6 @@
+import sys
+input = lambda:sys.stdin.readline().rstrip()
+
 n = int(input())
 ansdic = dict()
 for _ in range(n):
