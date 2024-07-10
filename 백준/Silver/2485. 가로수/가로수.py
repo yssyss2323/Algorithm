@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 def gcd(x, y):
     if y == 0:
         return x
