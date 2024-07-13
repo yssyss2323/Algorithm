@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 n,m,k = map(int,input().split())
 num_object = [int(input()) for _ in range(n)]
 num_margin = [int(input()) for _ in range(m)]
