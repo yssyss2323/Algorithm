@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 memo = [0] * 8000
 
 def recur(a,b,c):
