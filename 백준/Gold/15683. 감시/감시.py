@@ -74,20 +74,20 @@ def bt(table, x):
             bt(row_m(table, *curr_tv), x + 1)
             bt(col_p(table, *curr_tv), x + 1)
             bt(col_m(table, *curr_tv), x + 1)
-        if check[x] == 2:
+        elif check[x] == 2:
             bt(row_m(row_p(table, *curr_tv), *curr_tv), x + 1)
             bt(col_m(col_p(table, *curr_tv), *curr_tv), x + 1)
-        if check[x] == 3:
+        elif check[x] == 3:
             bt(col_m(row_p(table, *curr_tv), *curr_tv), x + 1)
             bt(row_p(col_p(table, *curr_tv), *curr_tv), x + 1)
             bt(col_p(row_m(table, *curr_tv), *curr_tv), x + 1)
             bt(row_m(col_m(table, *curr_tv), *curr_tv), x + 1)
-        if check[x] == 4:
+        elif check[x] == 4:
             bt(row_m(col_m(row_p(table, *curr_tv), *curr_tv), *curr_tv), x + 1)
             bt(col_m(row_p(col_p(table, *curr_tv), *curr_tv), *curr_tv), x + 1)
             bt(row_p(col_p(row_m(table, *curr_tv), *curr_tv), *curr_tv), x + 1)
             bt(col_p(row_m(col_m(table, *curr_tv), *curr_tv), *curr_tv), x + 1)
-        if check[x] == 5:
+        else:
             bt(col_m(row_p(col_p(row_m(table, *curr_tv), *curr_tv), *curr_tv), *curr_tv), x + 1)
             
 bt(table, 0)
