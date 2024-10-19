@@ -1,6 +1,3 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
 xlist, ylist = [], []
 for _ in range(n):
