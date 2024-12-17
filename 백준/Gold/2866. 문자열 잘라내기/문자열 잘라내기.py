@@ -3,11 +3,7 @@ input = sys.stdin.readline
 
 r, c = map(int, input().split())
 
-words = [''] * c
-for _ in range(r):
-    tmp = input()
-    for i in range(c):
-        words[i] += tmp[i]
+words = list(map(''.join, zip(*[input().rstrip() for _ in range(r)])))
 
 cnt = 0
 for i in range(1, r):
