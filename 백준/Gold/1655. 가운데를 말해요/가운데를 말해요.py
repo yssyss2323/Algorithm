@@ -1,16 +1,3 @@
-# def cnt(x, y):
-#     return x + y - 1
-#
-# def find_square(x):
-#     squares = []
-#     for i in range(3, x//2):
-#         check = x ** 2 - i ** 2
-#         if check ** 0.5 == int(check ** 0.5):
-#             squares.append((i, int(check ** 0.5)))
-#     return squares
-#
-# n = int(input())
-# print(find_square(n // 2))
 import heapq
 import sys
 input = sys.stdin.readline
