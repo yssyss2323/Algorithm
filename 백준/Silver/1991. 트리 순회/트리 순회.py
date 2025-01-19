@@ -5,11 +5,10 @@ for _ in range(n):
     tree[tmp[0]] = [tmp[1], tmp[2]]
 
 def inorder(dic, start):
-    print(start, end='')
-    left, right = dic[start][0], dic[start][1]
-    if left != '.':
+    if start != '.':
+        left, right = dic[start][0], dic[start][1]
+        print(start, end='')
         inorder(dic, left)
-    if right != '.':
         inorder(dic, right)
 
 def preorder(dic, start):
