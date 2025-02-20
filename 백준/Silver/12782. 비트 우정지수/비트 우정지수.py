@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 for _ in range(int(input())):
     n, m = input().split()
     check = {'1':0, '0':0}
