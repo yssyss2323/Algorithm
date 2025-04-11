@@ -23,10 +23,17 @@ n, k = map(int, input().split())
 if k > n // 2:
     k = n - k
 
-ans = 1
-for i in range(k):
-    ans *= (n - i)
+if k == 0:
+    print(1)
+else:
+    n1 = n
+    n2 = 1
+    for i in range(2, k + 1):
+        n1 *= (n - i + 1)
+        n1 %= MOD
+        n2 *= i
+        n2 %= MOD
+
+    ans = n1 * mod_inv(n2)
     ans %= MOD
-    ans *= mod_inv(i + 1)
-    ans %= MOD
-print(ans)
+    print(ans)
