@@ -14,29 +14,15 @@ def find_factor(x):
     return factors
 
 def find_divs(x):
-    i = 2
-    divs = [1]
-    while i ** 2 <= x:
-        cnt = 0
-        tmp = []
-        while x % i == 0:
-            cnt += 1
-            tmp.append(i ** cnt)
-            x //= i
-        tmp2 = []
-        for d in divs:
-            for t in tmp:
-                tmp2.append(d * t)
-        divs += tmp2
-        i += 1
-    if x > 1:
-        tmp = []
-        for d in divs:
-            tmp.append(d * x)
-        divs += tmp
+    divs = []
+    for i in range(1, int(x ** 0.5)):
+        if x % i == 0:
+            divs.append(i)
+            divs.append(x // i)
+    if int(x ** 0.5) ** 2 == x:
+        divs.append(int(x ** 0.5))
     divs.sort()
     return divs
-
 
 if (n % 2 == 0) or (n % 5 == 0):
     print(-1)
