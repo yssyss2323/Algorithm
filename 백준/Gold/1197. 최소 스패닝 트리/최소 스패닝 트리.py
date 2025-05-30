@@ -6,12 +6,6 @@ def set_find(x):
         vert_set[x] = set_find(vert_set[x])
     return vert_set[x]
 
-def union(x, y):
-    x_root = set_find(x)
-    y_root = set_find(y)
-    if x_root != y_root:
-        vert_set[x_root] = y_root
-
 v, e = map(int, input().split())
 vert_set = [i for i in range(v + 1)]
 edges = [list(map(int, input().split())) for _ in range(e)]
