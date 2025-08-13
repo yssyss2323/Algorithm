@@ -6,7 +6,7 @@ q = deque([(a, 0)])
 
 while True:
     curr, cnt = q.popleft()
-    if curr > 1000000:
+    if curr > k:
         continue
     if curr + 1 == k or curr * 2 == k:
         print(cnt + 1)
