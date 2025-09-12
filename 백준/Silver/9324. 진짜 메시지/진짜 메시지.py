@@ -1,3 +1,6 @@
+import sys
+input = lambda:sys.stdin.readline().rstrip()
+
 for _ in range(int(input())):
     message = input()
     check ={chr(i) : 0 for i in range(ord('A'), ord('Z') + 1)}
