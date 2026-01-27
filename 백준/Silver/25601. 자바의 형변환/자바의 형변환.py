@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
 graph = dict()
 for _ in range(n - 1):
