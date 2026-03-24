@@ -3,28 +3,26 @@ input = sys.stdin.readline
 
 n, m = map(int, input().split())
 k = int(input())
+
 board = [[0] * (m + 1)]
-board += [[0] + list(map(int, input().split())) for _ in range(n)]
+for _ in range(n):
+    board.append([0] + list(map(int, input().split())))
 
 prefix_sum_row = [[0] * (m + 1) for _ in range(n + 1)]
 prefix_sum_col = [[0] * (m + 1) for _ in range(n + 1)]
 
 for i in range(1, n + 1):
-    tmp = 0
     for j in range(1, m + 1):
-        tmp += board[i][j]
-        prefix_sum_row[i][j] = tmp
-
-for i in range(1, m + 1):
-    tmp = 0
-    for j in range(1, n + 1):
-        tmp += board[j][i]
-        prefix_sum_col[j][i] = tmp
+        prefix_sum_row[i][j] = prefix_sum_row[i][j - 1] + board[i][j]
+        prefix_sum_col[i][j] = prefix_sum_col[i - 1][j] + board[i][j]
 
 ans = 0
+target_len = 2 * k + 1
+
 for i in range(k + 1, n + 1 - k):
     for j in range(k + 1, m + 1 - k):
-        if prefix_sum_row[i][j + k] - prefix_sum_row[i][j - k - 1] == 2 * k + 1:
-            if prefix_sum_col[i + k][j] - prefix_sum_col[i - k - 1][j] == 2 * k + 1:
+        if prefix_sum_row[i][j + k] - prefix_sum_row[i][j - k - 1] == target_len:
+            if prefix_sum_col[i + k][j] - prefix_sum_col[i - k - 1][j] == target_len:
                 ans += 1
+                    
 print(ans)
