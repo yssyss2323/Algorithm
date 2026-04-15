@@ -26,8 +26,6 @@ q = deque(good_tomato)
 required_day = 0
 while q:
     curr_x, curr_y, curr_z, curr_d = q.popleft()
-    if curr_d > required_day:
-        required_day = curr_d
 
     for i in range(6):
         nx = curr_x + dx[i]
@@ -39,6 +37,7 @@ while q:
             q.append((nx, ny, nz, nd))
             box[nx][ny][nz] = 1
             bad_tomato_cnt -= 1
+            required_day = curr_d + 1
 
 if bad_tomato_cnt:
     print(-1)
