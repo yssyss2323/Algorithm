@@ -1,43 +1,46 @@
 from collections import deque
 import sys
+input = sys.stdin.readline
 
-input = lambda: sys.stdin.readline().rstrip()
-M, N, H = map(int, input().split())
-# 맵 초기화
-field = [[[-1] * (M + 2)] * (N + 2)]
-for _ in range(H):
-    tmp = [[-1] * (M + 2)]
-    for _ in range(N):
-        tmp.append([-1] + list(map(int, input().split())) + [-1])
-    tmp += [[-1] * (M + 2)]
-    field.append(tmp)
-field.append([[-1] * (M + 2)] * (N + 2))
-# 익은 토마토 (큐)
-welldone = deque()
-for i in range(H + 2):
-    for j in range(N + 2):
-        for k in range(M + 2):
-            if field[i][j][k] == 1:
-                welldone.append([i, j, k, 0])
-
-# 이동방향
 dx = [1, -1, 0, 0, 0, 0]
 dy = [0, 0, 1, -1, 0, 0]
 dz = [0, 0, 0, 0, 1, -1]
-# bfs 수행
-day = 0
-while welldone:
-    x, y, z, d = welldone.popleft()
+
+good_tomato = []
+bad_tomato_cnt = 0
+
+m, n, h = map(int, input().split())
+box = [[[-1] * m for _ in range(n)] for _ in range(h)]
+for i in range(h):
+    for j in range(n):
+        curr = list(map(int, input().split()))
+        for k in range(m):
+            if curr[k] == 1:
+                box[i][j][k] = curr[k]
+                good_tomato.append((i, j, k, 0))
+            elif curr[k] == 0:
+                box[i][j][k] = curr[k]
+                bad_tomato_cnt += 1
+
+q = deque(good_tomato)
+required_day = 0
+while q:
+    curr_x, curr_y, curr_z, curr_d = q.popleft()
+    if curr_d > required_day:
+        required_day = curr_d
+
     for i in range(6):
-        newx, newy, newz = x + dx[i], y + dy[i], z + dz[i]
-        if field[newx][newy][newz] == 0:
-            welldone.append([newx, newy, newz, d + 1])
-            field[newx][newy][newz] = 1
-            day = d + 1
-# 정답 출력
-for height in field:
-    for row in height:
-        if 0 in row:
-            print(-1)
-            exit()
-print(day)
+        nx = curr_x + dx[i]
+        ny = curr_y + dy[i]
+        nz = curr_z + dz[i]
+        nd = curr_d + 1
+
+        if 0 <= nx < h and 0 <= ny < n and 0 <= nz < m and box[nx][ny][nz] == 0:
+            q.append((nx, ny, nz, nd))
+            box[nx][ny][nz] = 1
+            bad_tomato_cnt -= 1
+
+if bad_tomato_cnt:
+    print(-1)
+else:
+    print(required_day)
