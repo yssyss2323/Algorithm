@@ -10,16 +10,16 @@ good_tomato = []
 bad_tomato_cnt = 0
 
 m, n, h = map(int, input().split())
-box = [[[-1] * m for _ in range(n)] for _ in range(h)]
-for i in range(h):
-    for j in range(n):
+box = [[[-1] * (m + 2) for _ in range(n + 2)] for _ in range(h + 2)] # -1로 래핑
+for i in range(1, h + 1):
+    for j in range(1, n + 1):
         curr = list(map(int, input().split()))
-        for k in range(m):
-            if curr[k] == 1:
-                box[i][j][k] = curr[k]
+        for k in range(1, m + 1):
+            if curr[k - 1] == 1:
+                box[i][j][k] = curr[k - 1]
                 good_tomato.append((i, j, k, 0))
-            elif curr[k] == 0:
-                box[i][j][k] = curr[k]
+            elif curr[k - 1] == 0:
+                box[i][j][k] = curr[k - 1]
                 bad_tomato_cnt += 1
 
 q = deque(good_tomato)
@@ -33,7 +33,7 @@ while q:
         nz = curr_z + dz[i]
         nd = curr_d + 1
 
-        if 0 <= nx < h and 0 <= ny < n and 0 <= nz < m and box[nx][ny][nz] == 0:
+        if box[nx][ny][nz] == 0:
             q.append((nx, ny, nz, nd))
             box[nx][ny][nz] = 1
             bad_tomato_cnt -= 1
